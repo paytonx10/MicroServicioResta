@@ -5,7 +5,7 @@ import com.microservicios.resta.services.CalculaRestaServicio;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author Felipe Garrido
+ * @author Felipe Garrido.
  */
 @RestController
 public class PrincipalControlador {
