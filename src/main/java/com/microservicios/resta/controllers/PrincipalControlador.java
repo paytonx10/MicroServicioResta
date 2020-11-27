@@ -1,16 +1,19 @@
 package com.microservicios.resta.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.microservicios.resta.models.OperadoresDigitos;
+import com.microservicios.resta.services.CalculaRestaServicio;
+import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Felipe Garrido
+ */
 @RestController
 public class PrincipalControlador {
-    @RequestMapping("/restar")
-    public Integer restar(@RequestParam(value="calculoRestar") String valores) {
-        String[] valoresArr = valores.split(",");
-        int valoresRes = Integer.valueOf(valoresArr[0]) - Integer.valueOf(valoresArr[1]);
-        System.out.println("Resta: "+valoresRes);
-        return valoresRes;
+
+    @PostMapping(value = "/resta", consumes = "application/json", produces = "application/json")
+    public OperadoresDigitos restar(@RequestBody OperadoresDigitos operadoresDigitos) throws Exception {
+        CalculaRestaServicio calculaRestaServicio = new CalculaRestaServicio();
+        OperadoresDigitos operadoresDigitosRetorno = calculaRestaServicio.calcularResta(operadoresDigitos);
+        return operadoresDigitosRetorno;
     }
 }
